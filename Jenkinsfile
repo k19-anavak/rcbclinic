@@ -1,5 +1,5 @@
 pipeline {
-  agent { label 'slave2' }	
+  agent { label 'slave01' }	
 	environment {
         JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
         MAVEN_HOME = '/usr/share/maven'
@@ -15,22 +15,7 @@ pipeline {
             }
         }
 	  
-        stage('setupjava17') {             
-            steps {
-		   sh "whoami"
-		      echo " installing java 17"
-               sh "sudo apt update"
-     		sh "sudo apt install -y openjdk-17-jdk"
-		 
-            }
-        }
-
-	 stage('setupmaven') {             
-            steps {  
-		    echo " installing maveen"
-     		sh "sudo apt install -y maven"		 
-            }
-        }
+   
            stage('build') {             
             steps {               
                 sh "mvn clean package"
